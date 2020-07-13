@@ -10,31 +10,24 @@ namespace EserciziVari
     {
         static void Main(string[] args)
         {
-            var p = new Persona("valdes");
-            p.GetNettoGuadagnato();
+            var numeriFibonacci = new List<int> { 0, 1 };
+            Console.WriteLine("Inserisci il numero di elementi di fibonacci");
+            var numeroIterazioni = int.Parse(Console.ReadLine());
+            while(numeriFibonacci.Count < numeroIterazioni)
+            {
+                var f1 = numeriFibonacci[numeriFibonacci.Count - 1];
+                var f2 = numeriFibonacci[numeriFibonacci.Count - 2];
+                numeriFibonacci.Add(f1 + f2);
+            }
+            foreach (var fib in numeriFibonacci)
+            {
+                Console.WriteLine(fib);
+            }
+            var numeriDispariFibonacci = numeriFibonacci.Where(n => n % 2 != 0).ToList();
+            numeriDispariFibonacci.ForEach(i => Console.WriteLine(i));
+            
 
         }
     }
 
-    public class Persona
-    {
-        private readonly string cognome;
-        public int Reddito { get; set; } = 5000;
-        public Persona(string cognome)
-        {
-            this.cognome = cognome;
-        }
-        public double GetNettoGuadagnato()
-        {
-            return Reddito - TaxCalculator.GetTaxes(this);
-        }
-    }
-
-    public class TaxCalculator
-    {
-        public static double GetTaxes(Persona pers)
-        {
-            return pers.Reddito * 0.27;
-        }
-    }
 }
