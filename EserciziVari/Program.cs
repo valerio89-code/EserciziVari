@@ -1,4 +1,5 @@
-﻿using static EserciziVari.Classe1;
+﻿
+using System;
 
 namespace EserciziVari
 {
@@ -6,20 +7,16 @@ namespace EserciziVari
     {
         static void Main(string[] args)
         {
-            var c1 = new Classe1();
-            var c2 = new Classe2();
-        }       
-    }
+            var arr = new int[] { 1, 5, 6, 7, 5, 1 };
+            StampaArrayDaIndice(arr, 2);
+        }
 
-    public class Classe1
-    {
-        private Classe2 MyPropertyc1 { get; set; } = new Classe2();
-        public class Classe2
+        public static void StampaArrayDaIndice(int[] array, int index)
         {
-            public int MyPropertyc2 { get; set; }
-
+            Console.WriteLine(array[index]);
+            if (index == array.Length - 1) return;
+            StampaArrayDaIndice(array, index + 1);
+            Console.WriteLine($"chiamata di indice {index}");
         }
     }
-
-
 }
